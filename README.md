@@ -1,2 +1,1 @@
-find a way to populate the grid using javascript to replace html entries. 
-also why would i do this in the first place?
+need to set it up so regardless of grid size entered, cells are resized to fit in the container size. 

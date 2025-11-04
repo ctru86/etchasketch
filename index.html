@@ -9,42 +9,76 @@
 <body>
 
 
-    <h1>Etch-a-Sketch</h1>
+    <h1>
+        <button id = "start">Set Grid Size to begin</button>
+        Etch-a-Sketch
+        <button id = "reset">Clear Grid</button>
+    </h1>
 
-    <div id="container">      
-        <div id = "test">1</div>
-        <div id = "test">2</div>
-        <div id = "test">3</div>
-        <div id = "test">4</div>
-        <div id = "test">5</div>
-        <div id = "test">6</div>
-        <div id = "test">7</div>
-        <div id = "test">8</div>
-        <div id = "test">9</div>
-        <div id = "test">10</div>
-        <div id = "test">11</div>
-        <div id = "test">12</div>
-        <div id = "test">13</div>
-        <div id = "test">14</div>
-        <div id = "test">15</div>
-        <div id = "test">16</div>
-        <div id = "test">1</div>
-        <div id = "test">2</div>
-        <div id = "test">3</div>
-        <div id = "test">4</div>
-        <div id = "test">5</div>
-        <div id = "test">6</div>
-        <div id = "test">7</div>
-        <div id = "test">8</div>
-        <div id = "test">9</div>
-        <div id = "test">10</div>
-        <div id = "test">11</div>
-        <div id = "test">12</div>
-        <div id = "test">13</div>
-        <div id = "test">14</div>
-        <div id = "test">15</div>
-        <div id = "test">16</div>
-    </div>
+
+    <div id="container"></div>
+
+    <script>
+        let isDrawing = false;
+        
+        document.addEventListener("mousedown", function() {
+                isDrawing = true;
+        });
+                
+        document.addEventListener("mouseup", function() {
+                isDrawing = false;
+        });
+
+        function getGridSize() {
+                const setGrid = document.querySelector("#start"); 
+                setGrid.addEventListener("click", function() {
+                let gridSize = prompt("What size grid would you like to draw on? Enter a number between 1 and 100.");
+                let size = Number(gridSize);
+                if (isNaN(size) || size > 100 || size <=0) {
+                alert("Grid size has to be between 1 and 100. Press grid size button again and enter valide number"); 
+                return; 
+                }
+                else {
+                const container = document.querySelector("#container");
+                container.innerHTML = ""; 
+                grid(size);    
+                }
+                });
+               
+        }
+
+        function clearGrid() {
+        const reset = document.querySelector("#reset"); 
+        reset.addEventListener("click", function() {
+                const cells = document.querySelectorAll(".cell");
+                cells.forEach(function(cell) {
+                cell.style.backgroundColor = "lightgrey"; 
+                });
+        });
+}
+
+        
+        function grid(size) {
+                const container = document.querySelector("#container");
+
+                for (let i = 0; i < size * size; i++) {
+                        const cell = document.createElement("div");
+                        cell.classList.add("cell");
+                
+                cell.addEventListener("mouseenter", function() {
+                        if (isDrawing) {  
+                        cell.style.backgroundColor = "black";
+                        }
+                });
+        
+                container.appendChild(cell); 
+                }     
+        }
+
+        getGridSize(); 
+        clearGrid();   
+        
+    </script>
 
 </body>
 </html>
