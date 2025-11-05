@@ -1,1 +1,1 @@
-need to set it up so regardless of grid size entered, cells are resized to fit in the container size. 
+This is my attempt at The Odin Project's Etch-a-Sketch exercise. Hope you enjoy! 
